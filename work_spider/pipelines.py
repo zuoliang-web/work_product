@@ -32,8 +32,14 @@ class CnkiDegreePipeline:
         if valid:
             print("insert ---=================")
             
-            if self.coll.find({"baseid":dict(item)["baseid"]}):
-                return None
+            # if self.coll.find({"baseid":dict(item)["baseid"]}):
+            #     return None
             self.coll.insert(dict(item))  # 将item解包后存入mongodb中
         return item
+    
+    
+    def  enumerate_data(self):
+        
+        data = self.coll.find(no_cursor_timeout=True)
+        return data
     

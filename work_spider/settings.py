@@ -44,9 +44,10 @@ DOWNLOAD_DELAY = 0.5
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
+SPIDER_MIDDLEWARES = {
 #    "work_spider.middlewares.WorkSpiderSpiderMiddleware": 543,
-#}
+    "work_spider.middlewares.ProxyMiddleware": 543,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
@@ -99,3 +100,18 @@ MONGO_HOST = "192.168.0.120"
 MONGO_PORT = "27017"
 MONGO_DB = 'school_data'
 MONGO_COL = 'test_degree'
+
+proxyHost = "ip4.hahado.cn"
+proxyPort = "47333"
+proxyUser = "196820"
+proxyPass = "196820"
+proxyMeta = "http://%(user)s:%(pass)s@%(host)s:%(port)s" % {
+    "host" : proxyHost,
+    "port" : proxyPort,
+    "user" : proxyUser,
+    "pass" : proxyPass,
+}
+proxies = {
+    "http"  : proxyMeta,
+    "https" : proxyMeta,
+} 
