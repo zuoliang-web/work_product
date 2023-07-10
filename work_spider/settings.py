@@ -115,3 +115,20 @@ proxies = {
     "http"  : proxyMeta,
     "https" : proxyMeta,
 } 
+
+import configparser
+import os
+curpath = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+cfgpath = os.path.join(curpath, "config.ini")
+print(cfgpath)  # c
+
+ 
+# 创建管理对象
+conf = configparser.ConfigParser()
+ 
+# 读ini文件
+conf.read(cfgpath, encoding="utf-8")  # python3
+ 
+
+MONGO_INFOS = conf['mongodb']
+PROXY_INFOS = conf['proxy']
