@@ -1,3 +1,6 @@
+
+import configparser
+import os
 # Scrapy settings for work_spider project
 #
 # For simplicity, this file contains only settings considered important or
@@ -94,30 +97,16 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
-MONGO_USER = 'root'
-MONGO_PASSWD = 'abcd1234'
-MONGO_HOST = "192.168.0.120"
-MONGO_PORT = "27017"
-MONGO_DB = 'school_data'
-MONGO_COL = 'test_degree'
+# MONGO_USER = 'root'
+# MONGO_PASSWD = 'abcd1234'
+# MONGO_HOST = "192.168.0.120"
+# MONGO_PORT = "27017"
+# MONGO_DB = 'school_data'
+# MONGO_COL = 'test_degree'
 
-proxyHost = "ip4.hahado.cn"
-proxyPort = "47333"
-proxyUser = "196820"
-proxyPass = "196820"
-proxyMeta = "http://%(user)s:%(pass)s@%(host)s:%(port)s" % {
-    "host" : proxyHost,
-    "port" : proxyPort,
-    "user" : proxyUser,
-    "pass" : proxyPass,
-}
-proxies = {
-    "http"  : proxyMeta,
-    "https" : proxyMeta,
-} 
 
-import configparser
-import os
+
+
 curpath = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 cfgpath = os.path.join(curpath, "config.ini")
 print(cfgpath)  # c
@@ -132,3 +121,19 @@ conf.read(cfgpath, encoding="utf-8")  # python3
 
 MONGO_INFOS = conf['mongodb']
 PROXY_INFOS = conf['proxy']
+
+proxyHost = PROXY_INFOS["proxyHost"]
+proxyPort = PROXY_INFOS["proxyPort"]
+proxyUser = PROXY_INFOS["proxyUser"]
+proxyPass = PROXY_INFOS["proxyPass"]
+
+proxyMeta = "http://%(user)s:%(pass)s@%(host)s:%(port)s" % {
+    "host" : proxyHost,
+    "port" : proxyPort,
+    "user" : proxyUser,
+    "pass" : proxyPass,
+}
+proxies = {
+    "http"  : proxyMeta,
+    "https" : proxyMeta,
+} 

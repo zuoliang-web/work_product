@@ -1,12 +1,13 @@
 import scrapy
 import datetime, math, time
 from urllib.parse import urlencode, urljoin
-from ..items import SchoolUnitItem
+
 from anti_useragent import UserAgent
 import requests
 from lxml import etree
 
 from ..pipelines import CnkiDegreePipeline
+from ..items import SchoolUnitItem, SchoolCheckItem
 from ..settings import proxies
 
 class DegreeSpider(scrapy.Spider):
@@ -70,7 +71,7 @@ class DegreeSpider(scrapy.Spider):
             current_page += 1 
             
             das = urlencode(params).replace('%27', '%22')
-            if current_page == 42:
+            if current_page == 3:
                 break
             while True:
                 try:
@@ -90,8 +91,11 @@ class DegreeSpider(scrapy.Spider):
         
         for key, value in schoolDict.items():
             path = f"https://navi.cnki.net/knavi/degreeunits/{value}/detail?uniplatform=NZKPT"
-    
-            yield scrapy.Request(path,  headers=response.meta["headers"], meta={"value":value}, callback=self.parse_detail)
+            checkitem = SchoolCheckItem()
+            checkitem["baseid"] = value
+            yield checkitem
+            if checkitem["isExist"]:
+                yield scrapy.Request(path,  headers=response.meta["headers"], meta={"value":value}, callback=self.parse_detail)
             
             
     def parse_detail(self, response):

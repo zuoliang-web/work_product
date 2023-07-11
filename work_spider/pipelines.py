@@ -10,10 +10,10 @@ import pymongo
 from scrapy.exceptions import DropItem
 
 from scrapy.utils.project import get_project_settings
-from .settings import MONGO_USER, MONGO_PASSWD, MONGO_DB, MONGO_COL, MONGO_PORT, MONGO_HOST
+from .items import SchoolCheckItem, articleCheckItem, SchoolUnitItem, articlesItem
 
 
-settings = get_project_settings()
+
 
 class WorkSpiderPipeline:
     def process_item(self, item, spider):
@@ -25,12 +25,11 @@ class CnkiDegreePipeline:
     
     def __init__(self):
         # 连接数据库
-        settings['MONGO_PORT']
         settings = get_project_settings()
-        self.client = pymongo.MongoClient('mongodb://{0}:{1}@{2}:{3}'.format(settings['MONGO_USER'], settings['MONGO_PASSWD'], settings['MONGO_HOST'], int(settings['MONGO_PORT'])))
-        self.db = self.client[settings['MONGO_DB']]
-        self.coll = self.db[settings['DEGREE_UNIT']]  
-    
+        self.client = pymongo.MongoClient('mongodb://{0}:{1}@{2}:{3}'.format(settings.get('MONGO_INFOS')["MONGO_USER"], settings.get('MONGO_INFOS')["MONGO_PASSWD"], settings.get('MONGO_INFOS')["MONGO_HOST"], int(settings.get("MONGO_INFOS")["MONGO_PORT"])))
+        self.db = self.client[settings.get('MONGO_INFOS')["MONGO_DB"]]
+        self.coll = self.db[settings.get("MONGO_INFOS")["DEGREE_UNIT"]]  
+        self.art_coll = self.db[settings.get("MONGO_INFOS")["DEGREE_ARTICLES"]]
    
     
     def process_item(self, item, spider):
@@ -39,14 +38,26 @@ class CnkiDegreePipeline:
             if not data:
                 valid = False
                 raise DropItem("Missing {0}!".format(data))
-        if valid:
-            
-            
-            if self.coll.find_one({"baseid":dict(item)["baseid"]}):
-                print(f"{dict(item)['name']}: 已存在")
-                return None
-            self.coll.insert(dict(item))  # 将item解包后存入mongodb中
-            print(f"{dict(item)['name']}: 已录入")
+        if valid:       
+            if type(item) == SchoolCheckItem:
+                if self.coll.find_one({"baseid":dict(item)["baseid"]}):
+                    print(f"{dict(item)['baseid']}: 已存在")
+                    item["isExist"] = False
+                else:
+                    item["isExist"] = True
+            elif type(item) == articleCheckItem:           
+                if self.art_coll.find_one({"title":dict(item)["title"]}):
+                    print(f"{dict(item)['title']}: 已存在")
+                    item["isExist"] = False
+                else:
+                    item["isExist"] = True
+                
+            elif type(item) == SchoolUnitItem:
+                self.coll.insert(dict(item))             # 将item解包后存入mongodb中
+                print(f"{dict(item)['name']}: 已录入")
+            elif type(item) == articlesItem:
+                self.art_coll.insert(dict(item))
+                print(f"{dict(item)['title']}: 已录入")                
         return item
     
     
@@ -55,28 +66,3 @@ class CnkiDegreePipeline:
         data = self.coll.find(no_cursor_timeout=True).skip(1).limit(3)
         return data
 
-
-class CnkiDegreeUnitCheckPipeline:
-    def __init__(self):
-        # 连接数据库
-        settings['MONGO_PORT']
-        settings = get_project_settings()
-        self.client = pymongo.MongoClient('mongodb://{0}:{1}@{2}:{3}'.format(settings['MONGO_USER'], settings['MONGO_PASSWD'], settings['MONGO_HOST'], int(settings['MONGO_PORT'])))
-        self.db = self.client[settings['MONGO_DB']]
-        self.coll = self.db[settings['DEGREE_ARTICLES']]  
-    
-    def process_item(self, item, spider):
-        valid = True
-        for data in item:
-            if not data:
-                valid = False
-                raise DropItem("Missing {0}!".format(data))
-        if valid:
-            
-            
-            if self.coll.find_one({"baseid":dict(item)["baseid"]}):
-                print(f"{dict(item)['name']}: 已存在")
-                return None
-            self.coll.insert(dict(item))  # 将item解包后存入mongodb中
-            print(f"{dict(item)['name']}: 已录入")
-        return item

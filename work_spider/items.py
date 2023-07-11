@@ -11,6 +11,9 @@ class WorkSpiderItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
+class SchoolCheckItem(scrapy.Item):
+    baseid =  scrapy.Field()
+    isExist = scrapy.Field()
 
 class SchoolUnitItem(scrapy.Item) :
     
@@ -28,6 +31,10 @@ class SchoolUnitItem(scrapy.Item) :
     degree_type = scrapy.Field()
     pcode = scrapy.Field()
 
+
+class articleCheckItem(scrapy.Item):
+    title = scrapy.Field()
+    isExist = scrapy.Field()
 
 class articlesItem(scrapy.Item):
     title = scrapy.Field()
