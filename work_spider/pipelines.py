@@ -5,6 +5,7 @@
 
 
 # useful for handling different item types with a single interface
+import datetime
 from itemadapter import ItemAdapter
 import pymongo
 from scrapy.exceptions import DropItem
@@ -46,8 +47,8 @@ class CnkiDegreePipeline:
                 else:
                     item["isExist"] = True
             elif type(item) == articleCheckItem:           
-                if self.art_coll.find_one({"title":dict(item)["title"]}):
-                    print(f"{dict(item)['title']}: 已存在")
+                if self.art_coll.count_documents({"title":dict(item)["title"]}) != 0:
+                    spider.logger.info(f" 学校：{dict(item)['company']} 论文： {dict(item)['title']}: 已存在")
                     item["isExist"] = False
                 else:
                     item["isExist"] = True
@@ -57,12 +58,13 @@ class CnkiDegreePipeline:
                 print(f"{dict(item)['name']}: 已录入")
             elif type(item) == articlesItem:
                 self.art_coll.insert(dict(item))
-                print(f"{dict(item)['title']}: 已录入")                
+                now_time = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
+                spider.logger.info(f"时间：{now_time}   学校：{dict(item)['company']} 论文： {dict(item)['title']}  已录入")                
         return item
     
     
     def  enumerate_data(self):
         
-        data = self.coll.find(no_cursor_timeout=True).skip(1).limit(3)
+        data = self.coll.find(no_cursor_timeout=True).limit(3)
         return data
 

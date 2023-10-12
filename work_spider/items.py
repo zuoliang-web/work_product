@@ -34,22 +34,33 @@ class SchoolUnitItem(scrapy.Item) :
 
 class articleCheckItem(scrapy.Item):
     title = scrapy.Field()
+    company = scrapy.Field()
     isExist = scrapy.Field()
 
 class articlesItem(scrapy.Item):
-    title = scrapy.Field()
-    author = scrapy.Field()
+    pageno = scrapy.Field()     # 页码
+    doi = scrapy.Field()        # doi
+    collection = scrapy.Field() # 专辑
+    topic = scrapy.Field()      # 专题
+    type_code = scrapy.Field()  # 类别code
+    keywords = scrapy.Field()   # 关键词
+    size = scrapy.Field()        # 大小
+    subject = scrapy.Field()     # 学科
+    next_subject = scrapy.Field()     # 下属学科
+    title = scrapy.Field()       # 标题   
+    author = scrapy.Field()     # 作者
+    company = scrapy.Field()      # 作者所属单位
+    summary = scrapy.Field()    # 摘要
+    download_count = scrapy.Field()    # 下载数
+    mentor =  scrapy.Field()    # 导师
+    degree_type = scrapy.Field()  # 论文级别
+    degree_year = scrapy.Field() # 学位授予年度
+    source_type = scrapy.Field() # 文献来源
+    page_link = scrapy.Field()      # 文献链接
+    create_time = scrapy.Field()        # 创建日期
+    
     funds = scrapy.Field()
-    company = scrapy.Field()
-    pageno = scrapy.Field()
-    summary = scrapy.Field()
-    doi = scrapy.Field()
-    collection = scrapy.Field()
-    topic = scrapy.Field()
-    type_code = scrapy.Field()
-    create_time = scrapy.Field()
     update_time = scrapy.Field()
-    page_link = scrapy.Field()
     status = scrapy.Field()
     journal_name = scrapy.Field()
     pubtype = scrapy.Field()
@@ -60,7 +71,7 @@ class articlesItem(scrapy.Item):
     enname = scrapy.Field()
     region = scrapy.Field()
     lang = scrapy.Field()
-    source_type = scrapy.Field()
+    public_time = scrapy.Field()
     publish_company = scrapy.Field()
     journal_cn = scrapy.Field()
     journal_issn = scrapy.Field()

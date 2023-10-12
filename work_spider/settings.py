@@ -104,7 +104,10 @@ FEED_EXPORT_ENCODING = "utf-8"
 # MONGO_DB = 'school_data'
 # MONGO_COL = 'test_degree'
 
-
+LOG_ENABLED = True #是否启动日志记录，默认True
+LOG_ENCODING = 'UTF-8'
+LOG_FILE = 'logs/cnkiSpider.log'#日志输出文件，如果为NONE，就打印到控制台
+LOG_LEVEL = 'INFO'#日志级别，默认debugLOG_FORMAT #日志格式LOG_DATEFORMAT#日志日期格式LOG_STDOUT #日志标准输出，默认False，如果True所有标准输出都将写入日志中，比如代码中的print输出也会被写入到文件LOG_SHORT_NAMES#短日志名，默认为false，如果为True将不输出组件名
 
 
 curpath = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
