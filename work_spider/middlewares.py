@@ -4,11 +4,12 @@
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import time
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
+import requests
 
-from .settings import proxies
+from .settings import proxies, switchProxyURL
 
 
 class WorkSpiderSpiderMiddleware:
@@ -105,6 +106,15 @@ class WorkSpiderDownloaderMiddleware:
         spider.logger.info("Spider opened: %s" % spider.name)
 
 
-class ProxyMiddleware:
+class ProxyMiddleware(object):
     def process_request(self, request, spider):
-        request.meta["proxy"] = proxies
+        request.meta["proxy"] = proxies["http"]
+        
+    def process_response(self, request, response, spider):
+        
+        if "系统检测到您的访问行为异常" in response.text:
+            requests.get(switchProxyURL)
+            time.sleep(5)
+            return request
+        
+        return response

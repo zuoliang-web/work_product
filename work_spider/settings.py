@@ -47,16 +47,20 @@ DOWNLOAD_DELAY = 0.5
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-SPIDER_MIDDLEWARES = {
+# SPIDER_MIDDLEWARES = {
 #    "work_spider.middlewares.WorkSpiderSpiderMiddleware": 543,
-    "work_spider.middlewares.ProxyMiddleware": 543,
-}
+    # "work_spider.middlewares.ProxyMiddleware": 543,
+    # 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': 600,
+    # 'my_middlewares.MyAutoProxyDownloaderMiddleware': 601,
+    # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 750,   
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+DOWNLOADER_MIDDLEWARES = {
 #    "work_spider.middlewares.WorkSpiderDownloaderMiddleware": 543,
-#}
+   "work_spider.middlewares.ProxyMiddleware": 543,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -129,6 +133,8 @@ proxyHost = PROXY_INFOS["proxyHost"]
 proxyPort = PROXY_INFOS["proxyPort"]
 proxyUser = PROXY_INFOS["proxyUser"]
 proxyPass = PROXY_INFOS["proxyPass"]
+proxyLoginUser = PROXY_INFOS["proxyLoginUser"]
+proxyLoginPass = PROXY_INFOS["proxyLoginPass"]
 
 proxyMeta = "http://%(user)s:%(pass)s@%(host)s:%(port)s" % {
     "host" : proxyHost,
@@ -140,3 +146,5 @@ proxies = {
     "http"  : proxyMeta,
     "https" : proxyMeta,
 } 
+
+switchProxyURL = "http://%s:%s@%s/simple/switch-ip?username=%s&password=%s" % (proxyLoginUser, proxyLoginPass, proxyHost, proxyUser, proxyPass)

@@ -65,6 +65,6 @@ class CnkiDegreePipeline:
     
     def  enumerate_data(self):
         
-        data = self.coll.find(no_cursor_timeout=True).limit(3)
+        data = self.coll.find(no_cursor_timeout=True).skip(3)
         return data
 
