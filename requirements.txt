@@ -1,0 +1,11 @@
+flask
+celery
+anti_useragent
+mongoengine 
+elasticsearch_dsl  
+elasticsearch
+flask_sqlalchemy
+pymongo
+pymysql
+selenium
+kafka-python

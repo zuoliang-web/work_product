@@ -1,0 +1,152 @@
+[2023-11-02 11:27:02,537][view.py:151][INFO][123145602899968] - 开始抓取  学校名称：中南大学  第32个
+[2023-11-02 11:27:06,161][view.py:208][INFO][123145602899968] -  第2页 数据获取 --ing   
+[2023-11-02 11:27:29,693][app.py:1414][ERROR][123145602899968] - Exception on /spiders/schoolPapaer [GET]
+Traceback (most recent call last):
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/urls.py", line 30, in spiderSchoolPaper
+    pressPaper()
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/view.py", line 334, in pressPaper
+    Kproducer.sendMsg("cnki_spider", saveData)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/dbutils/Ckafka.py", line 27, in sendMsg
+    x = self.KProducer.send(topic, msg, callback=True)
+TypeError: send() got an unexpected keyword argument 'callback'
+[2023-11-02 11:29:32,241][view.py:151][INFO][123145575624704] - 开始抓取  学校名称：中南大学  第32个
+[2023-11-02 11:29:38,658][view.py:208][INFO][123145575624704] -  第2页 数据获取 --ing   
+[2023-11-02 11:30:37,282][view.py:151][INFO][123145612972032] - 开始抓取  学校名称：中南大学  第32个
+[2023-11-02 11:30:42,761][view.py:208][INFO][123145612972032] -  第2页 数据获取 --ing   
+[2023-11-02 11:31:31,400][view.py:336][INFO][123145612972032] -  学校名称：中南大学  录入论文：Mg-Gd-Y-Zn-Zr-xAg合金锻造变形及时效强化行为研究
+[2023-11-02 11:31:40,800][app.py:1414][ERROR][123145714245632] - Exception on /spiders/kafkaWorker [GET]
+Traceback (most recent call last):
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/urls.py", line 36, in kafkaCustomer
+    reciveData()
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/view.py", line 351, in reciveData
+    cao.DataProcesser(None)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/utils/commFunc.py", line 105, in DataProcesser
+    recv = "%s:%d:%d: key=%s value=%s" % (msg.topic, msg.partition, msg.offset, msg.key, msg.value)
+AttributeError: 'NoneType' object has no attribute 'topic'
+[2023-11-02 11:32:24,182][view.py:336][INFO][123145612972032] -  学校名称：中南大学  录入论文：冷旋锻镁合金纳米晶形成机理研究
+[2023-11-02 11:32:36,804][view.py:336][INFO][123145612972032] -  学校名称：中南大学  录入论文：基于近似惯性流形的刚-柔耦合机械臂降维建模及振动抑制
+[2023-11-02 11:32:36,818][app.py:1414][ERROR][123145714245632] - Exception on /spiders/kafkaWorker [GET]
+Traceback (most recent call last):
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/urls.py", line 36, in kafkaCustomer
+    reciveData()
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/view.py", line 351, in reciveData
+    cao.DataProcesser(None)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/utils/commFunc.py", line 105, in DataProcesser
+    recv = "%s:%d:%d: key=%s value=%s" % (msg.topic, msg.partition, msg.offset, msg.key, msg.value)
+AttributeError: 'NoneType' object has no attribute 'topic'
+[2023-11-02 11:32:51,834][view.py:336][INFO][123145612972032] -  学校名称：中南大学  录入论文：年轻大鼠骨髓MSCs外泌体对衰老所致血管新生能力下降的改善及机制研究
+[2023-11-02 11:33:24,205][view.py:336][INFO][123145612972032] -  学校名称：中南大学  录入论文：石墨炔分子器件自旋输运性质的多元应变调控研究
+[2023-11-02 11:33:27,540][app.py:1414][ERROR][123145714245632] - Exception on /spiders/kafkaWorker [GET]
+Traceback (most recent call last):
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/urls.py", line 36, in kafkaCustomer
+    reciveData()
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/view.py", line 351, in reciveData
+    cao.DataProcesser(None)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/utils/commFunc.py", line 105, in DataProcesser
+    recv = "%s:%d:%d: key=%s value=%s" % (msg.topic, msg.partition, msg.offset, msg.key, msg.value)
+AttributeError: 'NoneType' object has no attribute 'topic'
+[2023-11-02 11:58:01,610][app.py:1414][ERROR][123145541398528] - Exception on /spiders/kafkaWorker [GET]
+Traceback (most recent call last):
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/urls.py", line 36, in kafkaCustomer
+    reciveData()
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/view.py", line 351, in reciveData
+    cao.ProcessKafkaData(None)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/utils/commFunc.py", line 99, in ProcessKafkaData
+    self.kclient.start()
+AttributeError: 'CKafkaConsumer' object has no attribute 'start'
+[2023-11-02 13:12:07,968][app.py:1414][ERROR][123145541398528] - Exception on /spiders/kafkaWorker [GET]
+Traceback (most recent call last):
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/urls.py", line 36, in kafkaCustomer
+    reciveData()
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/view.py", line 351, in reciveData
+    cao.ProcessKafkaData(None)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/utils/commFunc.py", line 99, in ProcessKafkaData
+    self.kclient.start()
+AttributeError: 'CKafkaConsumer' object has no attribute 'start'
+[2023-11-02 13:19:38,705][app.py:1414][ERROR][123145466109952] - Exception on /spiders/kafkaWorker [GET]
+Traceback (most recent call last):
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/urls.py", line 36, in kafkaCustomer
+    reciveData()
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/spiderTask/view.py", line 351, in reciveData
+    cao.ProcessKafkaData(None)
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/utils/commFunc.py", line 99, in ProcessKafkaData
+    self.kclient.run()
+  File "/Users/wuzuoliang/Desktop/学位论文/演示程序/flask_cnki/apps/dbutils/Ckafka.py", line 73, in run
+    for msg in self.KConsumer:
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/kafka/consumer/group.py", line 1193, in __next__
+    return self.next_v2()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/kafka/consumer/group.py", line 1201, in next_v2
+    return next(self._iterator)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/kafka/consumer/group.py", line 1116, in _message_generator_v2
+    record_map = self.poll(timeout_ms=timeout_ms, update_offsets=False)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/kafka/consumer/group.py", line 655, in poll
+    records = self._poll_once(remaining, max_records, update_offsets=update_offsets)
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/kafka/consumer/group.py", line 675, in _poll_once
+    self._coordinator.poll()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/kafka/coordinator/consumer.py", line 289, in poll
+    self.ensure_active_group()
+  File "/Users/wuzuoliang/opt/anaconda3/envs/work_paper/lib/python3.8/site-packages/kafka/coordinator/base.py", line 425, in ensure_active_group
+    raise exception  # pylint: disable-msg=raising-bad-type
+kafka.errors.InvalidGroupIdError: [Error 24] InvalidGroupIdError: JoinGroupResponse_v2(throttle_time_ms=0, error_code=24, generation_id=-1, group_protocol='', leader_id='', member_id='', members=[])
+[2023-11-02 13:29:18,652][view.py:151][INFO][123145428123648] - 开始抓取  学校名称：中南大学  第32个
+[2023-11-02 13:29:21,757][view.py:208][INFO][123145428123648] -  第2页 数据获取 --ing   
+[2023-11-02 13:52:27,614][view.py:151][INFO][123145487937536] - 开始抓取  学校名称：中南大学  第32个
+[2023-11-02 13:52:29,345][view.py:208][INFO][123145487937536] -  第2页 数据获取 --ing   
+[2023-11-02 13:53:27,835][view.py:151][INFO][123145617879040] - 开始抓取  学校名称：中南大学  第32个
+[2023-11-02 13:53:31,513][view.py:208][INFO][123145617879040] -  第2页 数据获取 --ing   
